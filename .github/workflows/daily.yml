@@ -1,12 +1,12 @@
 # GitHub Actions Workflow to send a daily Telegram message
-# This workflow runs every day at 6:00 AM Bangladesh Time (00:00 UTC)
+# This workflow runs every day at 12:00 AM Bangladesh Time (18:00 UTC)
 
 name: Send Daily Telegram Plan
 
 on:
-  # Schedule to run at 00:00 UTC, which is 6:00 AM in Bangladesh (UTC+6)
+  # Schedule to run at 18:00 UTC, which is 12:00 AM in Bangladesh (UTC+6)
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 18 * * *'
   
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -24,7 +24,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10' # You can use a newer version if needed
+          python-version: '3.10'
 
       # Step 3: Install Python dependencies
       - name: Install dependencies
@@ -36,9 +36,6 @@ jobs:
       - name: Run Python script
         env:
           # These secrets must be configured in your GitHub repository settings
-          # Go to Settings > Secrets and variables > Actions > New repository secret
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_USER_ID: ${{ secrets.TELEGRAM_USER_ID }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python main.py
-
