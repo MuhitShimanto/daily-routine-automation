@@ -3,7 +3,6 @@ import json
 import requests
 from datetime import datetime, date
 import pytz
-from openai import OpenAI
 
 # --- Constants and Configuration ---
 # Timezone for Bangladesh
@@ -109,46 +108,6 @@ def get_todays_events(events):
     event_messages = [f"• {e['event']} — {e['time']} @ {e['location']}" for e in today_events]
     return "\n".join(event_messages)
 
-def get_chatgpt_advice(api_key, full_schedule):
-    """Gets dynamic advice from the OpenAI API."""
-    if not api_key:
-        return "To get AI advice, set your OPENAI_API_KEY secret in GitHub Actions."
-
-    try:
-        client = OpenAI(api_key=api_key)
-        prompt = (
-            "You are a friendly and motivational student advisor. "
-            "Based on the following schedule for a student in Bangladesh, provide one or two short, encouraging sentences of advice. "
-            "Focus on prioritizing tasks, managing time, or staying motivated. Add a positive emoji at the end.\n\n"
-            f"Today's Schedule:\n{full_schedule}"
-        )
-        
-        response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "You are a helpful student advisor."},
-                {"role": "user", "content": prompt}
-            ],
-            temperature=0.7,
-            max_tokens=100
-        )
-        advice = response.choices[0].message.content.strip()
-        return advice
-    except Exception as e:
-        print(f"Error calling OpenAI API: {e}")
-        return "Could not fetch AI advice due to an error. But remember to stay focused! 👍"
-
-def get_productivity_tip():
-    """Returns a random productivity tip."""
-    tips = [
-        "Try the Pomodoro Technique: 25 minutes of focused work followed by a 5-minute break.",
-        "Use the 2-Minute Rule: If a task takes less than two minutes, do it now.",
-        "Eat the Frog: Tackle your most challenging task first thing in the morning.",
-        "Time blocking can help you focus. Assign specific time slots for each task on your calendar.",
-    ]
-    import random
-    return random.choice(tips)
-
 def send_telegram_message(bot_token, user_id, message):
     """Sends a message to a Telegram user with detailed error logging."""
     url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
@@ -175,7 +134,6 @@ if __name__ == "__main__":
     # --- Load Secrets from Environment Variables ---
     TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
     TELEGRAM_USER_ID = os.getenv("TELEGRAM_USER_ID")
-    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY") # <-- Using OpenAI key now
 
     if not TELEGRAM_BOT_TOKEN or not TELEGRAM_USER_ID:
         print("Error: TELEGRAM_BOT_TOKEN and TELEGRAM_USER_ID must be set as environment variables.")
@@ -190,12 +148,15 @@ if __name__ == "__main__":
     # --- Build Message Sections ---
     classes_section = get_todays_classes(class_routine)
     learning_section = get_todays_learning(self_learning_plan)
-    deadlines_section = get_upcoming_deadlines(deadlines) # <-- Calling the new function
+    deadlines_section = get_upcoming_deadlines(deadlines)
     events_section = get_todays_events(special_events)
     
     user_name = "Muhitul" 
     
-    schedule_summary = f"""
+    # --- Finalize and Send Message ---
+    final_message = f"""
+🗓️ *Good Morning {user_name}! Here's your plan for today ({FORMATTED_DATE}):*
+
 🎓 *Classes*:
 {classes_section}
 
@@ -207,21 +168,6 @@ if __name__ == "__main__":
 
 🎯 *Special Events*:
 {events_section}
-"""
-    
-    # --- Get Dynamic Advice and Tip ---
-    ai_advice = get_chatgpt_advice(OPENAI_API_KEY, schedule_summary) # <-- Calling ChatGPT function
-    productivity_tip = get_productivity_tip()
-
-    # --- Finalize and Send Message ---
-    final_message = f"""
-🗓️ *Good Morning {user_name}! Here's your plan for today ({FORMATTED_DATE}):*
-{schedule_summary}
-💡 *ChatGPT says*:
-"{ai_advice}"
-
-� *Productivity Tip*:
-{productivity_tip}
 """
     
     send_telegram_message(TELEGRAM_BOT_TOKEN, TELEGRAM_USER_ID, final_message)
