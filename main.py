@@ -1,7 +1,7 @@
 import os
 import json
 import requests
-from datetime import datetime
+from datetime import datetime, date
 import pytz
 from openai import OpenAI
 
@@ -10,6 +10,8 @@ from openai import OpenAI
 TIMEZONE = pytz.timezone("Asia/Dhaka") 
 # Get today's date and day name based on the specified timezone
 TODAY = datetime.now(TIMEZONE)
+# Get just the date part for comparisons
+TODAY_DATE = TODAY.date()
 DAY_NAME = TODAY.strftime('%A')
 # Format for matching dates in deadlines.json and special_events.json (e.g., "2025-07-16")
 DATE_STR_YMD = TODAY.strftime('%Y-%m-%d')
@@ -54,15 +56,48 @@ def get_todays_learning(plan):
     task_messages = [f"• {task}" for task in learning_tasks]
     return "\n".join(task_messages)
 
-def get_todays_deadlines(deadlines):
-    """Get deadlines that are due today from a list."""
+def get_upcoming_deadlines(deadlines):
+    """Gets all upcoming deadlines, sorted by date."""
     if not deadlines:
         return "• No deadlines found."
-    due_today = [d for d in deadlines if d.get('date') == DATE_STR_YMD]
-    if not due_today:
-        return "• No deadlines today. Keep up the great work!"
-    deadline_messages = [f"• {d['task']} — Due Today!" for d in due_today]
+
+    upcoming = []
+    for d in deadlines:
+        try:
+            # Convert deadline date string to a date object
+            deadline_date = datetime.strptime(d['date'], '%Y-%m-%d').date()
+            # Add to list if the deadline is today or in the future
+            if deadline_date >= TODAY_DATE:
+                upcoming.append(d)
+        except (ValueError, KeyError):
+            # Skip malformed entries
+            continue
+    
+    if not upcoming:
+        return "• No upcoming deadlines. You're all caught up!"
+
+    # Sort the deadlines by date
+    upcoming.sort(key=lambda x: x['date'])
+
+    deadline_messages = []
+    for d in upcoming:
+        deadline_date = datetime.strptime(d['date'], '%Y-%m-%d').date()
+        days_left = (deadline_date - TODAY_DATE).days
+        
+        # Format the due date string
+        if days_left == 0:
+            due_str = "Due Today!"
+        elif days_left == 1:
+            due_str = "Due Tomorrow!"
+        else:
+            # Format date as "Jul 26"
+            formatted_date = deadline_date.strftime('%b %d')
+            due_str = f"Due in {days_left} days ({formatted_date})"
+            
+        deadline_messages.append(f"• {d['task']} — {due_str}")
+
     return "\n".join(deadline_messages)
+
 
 def get_todays_events(events):
     """Get special events for today from a list."""
@@ -155,7 +190,7 @@ if __name__ == "__main__":
     # --- Build Message Sections ---
     classes_section = get_todays_classes(class_routine)
     learning_section = get_todays_learning(self_learning_plan)
-    deadlines_section = get_todays_deadlines(deadlines)
+    deadlines_section = get_upcoming_deadlines(deadlines) # <-- Calling the new function
     events_section = get_todays_events(special_events)
     
     user_name = "Muhitul" 
@@ -167,7 +202,7 @@ if __name__ == "__main__":
 📚 *Self-Learning*:
 {learning_section}
 
-📌 *Deadlines*:
+📌 *Upcoming Deadlines*:
 {deadlines_section}
 
 🎯 *Special Events*:
@@ -185,7 +220,7 @@ if __name__ == "__main__":
 💡 *ChatGPT says*:
 "{ai_advice}"
 
-🌟 *Productivity Tip*:
+� *Productivity Tip*:
 {productivity_tip}
 """
     
