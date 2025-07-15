@@ -1,0 +1,86 @@
+[
+  {
+    "day": "Saturday",
+    "course": "MAT120 - 01",
+    "time": "8:00 AM-9:20 AM",
+    "room": "31C",
+    "floor": "07H"
+  },
+  {
+    "day": "Saturday",
+    "course": "ENV103 - 04",
+    "time": "9:30 AM-10:50 AM",
+    "room": "31T",
+    "floor": "09G"
+  },
+  {
+    "day": "Saturday",
+    "course": "CSE250 - 23",
+    "time": "11:00 AM-12:20 PM",
+    "room": "17C",
+    "floor": "10B"
+  },
+  {
+    "day": "Saturday",
+    "course": "CSE320 - 20",
+    "time": "12:30 PM-1:50 PM",
+    "room": "06C",
+    "floor": "09A"
+  },
+  {
+    "day": "Monday",
+    "course": "MAT120 (Lab)",
+    "time": "8:00 AM-9:20 AM",
+    "room": "26L",
+    "floor": "10E"
+  },
+  {
+    "day": "Monday",
+    "course": "STA201 - 16",
+    "time": "12:30 PM-1:50 PM",
+    "room": "30C",
+    "floor": "10F"
+  },
+  {
+    "day": "Wednesday",
+    "course": "STA201 - 16",
+    "time": "12:30 PM-1:50 PM",
+    "room": "30C",
+    "floor": "10F"
+  },
+  {
+    "day": "Thursday",
+    "course": "MAT120 - 01",
+    "time": "8:00 AM-9:20 AM",
+    "room": "31C",
+    "floor": "07H"
+  },
+  {
+    "day": "Thursday",
+    "course": "ENV103 - 04",
+    "time": "9:30 AM-10:50 AM",
+    "room": "31T",
+    "floor": "09G"
+  },
+  {
+    "day": "Thursday",
+    "course": "CSE250 - 23",
+    "time": "11:00 AM-12:20 PM",
+    "room": "17C",
+    "floor": "10B"
+  },
+  {
+    "day": "Thursday",
+    "course": "CSE320 - 20",
+    "time": "12:30 PM-1:50 PM",
+    "room": "06C",
+    "floor": "09A"
+  },
+  {
+    "day": "Thursday",
+    "course": "CSE250 (Lab)",
+    "time": "2:00 PM-4:50 PM",
+    "room": "01L",
+    "floor": "FT10"
+  }
+]
