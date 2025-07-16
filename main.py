@@ -155,7 +155,8 @@ if __name__ == "__main__":
     
     # --- Finalize and Send Message ---
     final_message = f"""
-🗓️ *Good Morning {user_name}! Here's your plan for today ({FORMATTED_DATE}):*
+🗓️ *Good Morning {user_name}!*
+*Here's your plan for today ({FORMATTED_DATE}):*
 
 🎓 *Classes*:
 {classes_section}
