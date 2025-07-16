@@ -105,7 +105,8 @@ def get_todays_events(events):
     today_events = [e for e in events if e.get('date') == DATE_STR_YMD]
     if not today_events:
         return "• No special events scheduled for today."
-    event_messages = [f"• {e['event']} — {e['time']} @ {e['location']}" for e in today_events]
+    # event_messages = [f"• {e['event']} — {e['time']} @ {e['location']}" for e in today_events]
+    event_messages = [f"• {e['event']} — {e['time']}" for e in today_events]
     return "\n".join(event_messages)
 
 def send_telegram_message(bot_token, user_id, message):
