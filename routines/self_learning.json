@@ -34,5 +34,105 @@
   {
     "date": "July 25",
     "task": "Milestone - 03 Start"
+  },
+  {
+    "date": "July 26",
+    "task": "Module 13: Introduction to JavaScript"
+  },
+  {
+    "date": "July 27",
+    "task": "Module 14: Fundamental Concepts of Conditionals"
+  },
+  {
+    "date": "July 29",
+    "task": "Module 15: Fundamental Concepts of Loops"
+  },
+  {
+    "date": "July 30",
+    "task": "Module 16: Fundamentals of String & Objects"
+  },
+  {
+    "date": "July 31",
+    "task": "Conceptual Session"
+  },
+  {
+    "date": "August 02",
+    "task": "Module 17: JavaScript Simple Assignment 60 Marks Deadline Till 02 August 11.59 PM"
+  },
+  {
+    "date": "August 03",
+    "task": "Module 17.5: Bonus Video"
+  },
+  {
+    "date": "August 04",
+    "task": "Milestone-04 Start | Module 18: Concepts of Array , Array Traversal"
+  },
+  {
+    "date": "August 05",
+    "task": "Module 19: Fundamentals of Functions"
+  },
+  {
+    "date": "August 06",
+    "task": "Conceptual Session"
+  },
+  {
+    "date": "August 07",
+    "task": "Module 20: JavaScript Simple Coding Problems (Part-1)"
+  },
+  {
+    "date": "August 08",
+    "task": "Module 21: JavaScript Simple Coding Problems (Part 2)"
+  },
+  {
+    "date": "August 09",
+    "task": "Conceptual Session"
+  },
+  {
+    "date": "August 11",
+    "task": "Module 22: JavaScript Problem Solving Assignment 60 Marks Deadline Till 13 August 11.59 PM"
+  },
+  {
+    "date": "August 13",
+    "task": "Module 22.5: Bonus Video"
+  },
+  {
+    "date": "August 15",
+    "task": "Milestone-05 Start | Module 23: Recap - Web Design, Tailwind & Responsiveness"
+  },
+  {
+    "date": "August 16",
+    "task": "Module 24: Tour of DOM (Document Object Model)"
+  },
+  {
+    "date": "August 17",
+    "task": "Module 25: Events and Event Handling"
+  },
+  {
+    "date": "August 19",
+    "task": "Conceptual Session"
+  },
+  {
+    "date": "August 20",
+    "task": "Module 26: Let's Create Payooo Mobile Bank (Part 1)"
+  },
+  {
+    "date": "August 21",
+    "task": "Module 27: Payooo Project with Reusability (Part 2)"
+  },
+  {
+    "date": "August 22",
+    "task": "Conceptual Session"
+  },
+  {
+    "date": "August 24",
+    "task": "August 24: Module 28: Assignment-05 60 Marks Deadline Till 26 August 11.59 PM"
+  },
+  {
+    "date": "August 26",
+    "task": "Module 28.5: Bonus Video"
+  },
+  {
+    "date": "August 27",
+    "task": "Milestone-05 Start"
   }
 ]

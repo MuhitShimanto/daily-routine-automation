@@ -10,5 +10,35 @@
     "event": "CSS250 Online Class",
     "time": "7:00 PM-8:20 PM",
     "location": ""
+  },
+  {
+    "date": "2025-07-26",
+    "event": "CSE320-20 Mid",
+    "time": "2:00 PM-4:00 PM",
+    "location": "09D-17C"
+  },
+  {
+    "date": "2025-07-31",
+    "event": "STA201-16 Mid",
+    "time": "11:00 AM-12:30 PM",
+    "location": "10F-30C"
+  },
+  {
+    "date": "2025-08-02",
+    "event": "CSS250-23 Mid",
+    "time": "8:30 PM-10:00 AM",
+    "location": "08F-21C"
+  },
+  {
+    "date": "2025-08-02",
+    "event": "MAT120-01 Mid",
+    "time": "4:30 PM-6:00 PM",
+    "location": "09A-01C"
+  },
+  {
+    "date": "2025-08-03",
+    "event": "CSS250 Online Class",
+    "time": "8:30 AM-10:00 AM",
+    "location": "07A-01C"
   }
 ]
